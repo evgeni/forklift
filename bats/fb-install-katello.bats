@@ -64,36 +64,9 @@ setup() {
   fi
 }
 
-@test "wait 10 seconds" {
-  sleep 10
-}
-
-@test "check web app is up" {
-  curl -sk "https://localhost$URL_PREFIX/users/login" | grep -q login-form
-}
-
-@test "wake up puppet agent" {
-  source ~/.bashrc
-  puppet agent -t -v
-}
-
-@test "check web app is still up" {
-  curl -sk "https://localhost$URL_PREFIX/users/login" | grep -q login-form
-}
-
 @test "install CLI (hammer)" {
   yum clean all
   tPackageExists foreman-cli || tPackageInstall foreman-cli
-}
-
-@test "check smart proxy is registered" {
-  count=$(hammer --csv proxy list | wc -l)
-  [ $count -gt 1 ]
-}
-
-@test "check host is registered" {
-  [ x$FOREMAN_VERSION = "x1.3" ] && skip "Only supported on 1.4+"
-  hammer host info --name $(hostname -f)
 }
 
 @test "Zzzz.... (120 sec)" {

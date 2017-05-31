@@ -42,7 +42,7 @@ done
 
 if [ "$katello_nightly_install" == true ];
 then
-    BATS_ARGS=fb-install-katello.bats
+    BATS_ARGS="fb-install-katello.bats fb-test-katello.bats"
 fi
 
 if [ "$katello_content_tests" == true ];

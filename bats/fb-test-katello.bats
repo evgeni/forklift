@@ -1,0 +1,42 @@
+#!/usr/bin/env bats
+# vim: ft=sh:sw=2:et
+
+set -o pipefail
+
+load os_helper
+load foreman_helper
+
+setup() {
+  tSetOSVersion
+}
+
+@test "check web app is up" {
+  curl -sk "https://localhost$URL_PREFIX/users/login" | grep -q login-form
+}
+
+@test "wake up puppet agent" {
+  source ~/.bashrc
+  puppet agent -t -v
+}
+
+@test "check web app is still up" {
+  curl -sk "https://localhost$URL_PREFIX/users/login" | grep -q login-form
+}
+
+@test "check smart proxy is registered" {
+  count=$(hammer --csv proxy list | wc -l)
+  [ $count -gt 1 ]
+}
+
+@test "check host is registered" {
+  [ x$FOREMAN_VERSION = "x1.3" ] && skip "Only supported on 1.4+"
+  hammer host info --name $(hostname -f)
+}
+
+@test "check katello-service status" {
+  katello-service status
+}
+
+@test "check hammer ping" {
+  hammer ping
+}
