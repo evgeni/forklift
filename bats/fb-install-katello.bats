@@ -44,13 +44,6 @@ setup() {
   sed -ir "s/^\s*server\s*=.*/server = $(hostname -f)/g" /etc/puppet/puppet.conf
 }
 
-@test "enable haveged (el7 only)" {
-  if tIsRHEL 7; then
-    tPackageExists "haveged" || tPackageInstall "haveged"
-    tServiceStart haveged; tServiceEnable haveged
-  fi
-}
-
 @test "run the installer" {
   foreman-installer --scenario katello --no-colors -v --disable-system-checks --foreman-admin-password=changeme
 }
