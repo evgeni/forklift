@@ -28,19 +28,6 @@ setup() {
   sed -ir "s/^\s*server\s*=.*/server = $(hostname -f)/g" /etc/puppet/puppet.conf
 }
 
-@test "run the installer" {
-  foreman-installer --scenario katello --no-colors -v --disable-system-checks --foreman-admin-password=changeme
-}
-
-@test "run the installer once again" {
-  if [ -e "/vagrant/katello-installer" ]; then
-    cd /vagrant/katello-installer
-    ./bin/foreman-installer --no-colors -v  --disable-system-checks
-  else
-    foreman-installer --no-colors -v --disable-system-checks
-  fi
-}
-
 @test "install CLI (hammer)" {
   yum clean all
   tPackageExists foreman-cli || tPackageInstall foreman-cli
