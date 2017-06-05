@@ -10,14 +10,6 @@ setup() {
   tForemanSetLang
   tSetOSVersion
   FOREMAN_VERSION=$(tForemanVersion)
-
-  tPackageExists 'wget' || tPackageInstall 'wget'
-  tPackageExists 'ruby' || tPackageInstall 'ruby'
-
-  tPackageExists curl || tPackageInstall curl
-  if tIsRedHatCompatible; then
-    tPackageExists yum-utils || tPackageInstall yum-utils
-  fi
 }
 
 @test "stop puppet agent (if installed)" {
