@@ -13,14 +13,6 @@ setup() {
 
   tPackageExists 'wget' || tPackageInstall 'wget'
   tPackageExists 'ruby' || tPackageInstall 'ruby'
-  # disable firewall
-  if tIsRedHatCompatible; then
-    if tFileExists /usr/sbin/firewalld; then
-      tServiceStop firewalld; tServiceDisable firewalld
-    else
-      tServiceStop iptables; tServiceDisable iptables
-    fi
-  fi
 
   tPackageExists curl || tPackageInstall curl
   if tIsRedHatCompatible; then
