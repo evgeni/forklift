@@ -28,11 +28,6 @@ setup() {
   sed -ir "s/^\s*server\s*=.*/server = $(hostname -f)/g" /etc/puppet/puppet.conf
 }
 
-@test "install CLI (hammer)" {
-  yum clean all
-  tPackageExists foreman-cli || tPackageInstall foreman-cli
-}
-
 @test "Zzzz.... (120 sec)" {
   sleep 120
 }
