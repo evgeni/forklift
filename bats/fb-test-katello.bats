@@ -29,7 +29,6 @@ setup() {
 }
 
 @test "check host is registered" {
-  [ x$FOREMAN_VERSION = "x1.3" ] && skip "Only supported on 1.4+"
   hammer host info --name $(hostname -f)
 }
 
