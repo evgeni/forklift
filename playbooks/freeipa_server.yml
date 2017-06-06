@@ -4,5 +4,6 @@
   roles:
     - etc_hosts
     - epel_repositories
+    - disable_firewall
     - haveged
     - freeipa_server
