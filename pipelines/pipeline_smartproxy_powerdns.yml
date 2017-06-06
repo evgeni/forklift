@@ -42,6 +42,7 @@
     - foreman_repositories
     - disable_firewall
     - haveged
+    - clean_puppet
     - update_os_packages
     - foreman_installer
     - powerdns

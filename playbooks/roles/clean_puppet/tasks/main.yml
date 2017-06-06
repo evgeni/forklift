@@ -1,0 +1,21 @@
+---
+- name: stop puppet agent
+  service:
+    name: puppet
+    state: stopped
+    enabled: false
+
+- name: remove the puppet package
+  yum:
+    name: puppet
+    state: absent
+
+- name: purge /var/lib/puppet
+  file:
+    name: /var/lib/puppet
+    state: absent
+
+- name: purge /etc/puppet
+  file:
+    name: /etc/puppet
+    state: absent
