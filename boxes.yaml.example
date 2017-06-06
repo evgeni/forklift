@@ -43,7 +43,6 @@ centos7-bats-ci:
     variables:
       bats_tests:
         - "swapfile.bats"
-        - "fb-install-katello.bats"
         - "fb-test-katello.bats"
         - "fb-content-katello.bats"
         - "fb-finish-katello.bats"
