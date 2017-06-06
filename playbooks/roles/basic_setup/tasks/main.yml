@@ -1,4 +1,3 @@
 ---
 - include: firewall.yml
-- include: haveged.yml
 - include: packages.yml

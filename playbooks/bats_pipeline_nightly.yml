@@ -15,6 +15,6 @@
     - puppet_repositories
     - foreman_repositories
     - katello_repositories
-    - basic_setup
+    - haveged
     - foreman_installer
     - bats
