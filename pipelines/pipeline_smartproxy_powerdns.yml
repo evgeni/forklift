@@ -42,6 +42,7 @@
     - foreman_repositories
     - disable_firewall
     - haveged
+    - basic_setup
     - clean_puppet
     - update_os_packages
     - foreman_installer

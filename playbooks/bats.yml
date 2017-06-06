@@ -3,5 +3,6 @@
   roles:
     - disable_firewall
     - haveged
+    - basic_setup
     - clean_puppet
     - bats

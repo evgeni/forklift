@@ -6,4 +6,5 @@
     - epel_repositories
     - disable_firewall
     - haveged
+    - basic_setup
     - freeipa_server
