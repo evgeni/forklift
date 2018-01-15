@@ -1,4 +1,22 @@
 ---
+# workaround for https://github.com/vagrant-libvirt/vagrant-libvirt/issues/850
+# we need to ensure we don't try to vagrant up while another one is still
+# creating its disks
+- name: get libvirt pools
+  virt_pool:
+    command: info
+  register: libvirt_pools
+
+- name: wait for already defined libvirt volumes to exist
+  wait_for:
+    path: "{{ item.0.path }}/{{ item.1 }}"
+  with_subelements:
+    - "{{ libvirt_pools.pools }}"
+    - volumes
+  when:
+    - item.0.type == "dir"
+    - item.0.status == "running"
+
 - name: 'Write box file'
   copy:
     dest: "{{ current_directory }}/boxes.d/80-tmp-{{ forklift_name }}.yaml"
