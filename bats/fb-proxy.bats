@@ -14,6 +14,10 @@ setup() {
   PROXY_HOSTNAME=$(echo $PROXY_INFO | ruby -e "require 'json'; puts JSON.load(ARGF.read).first['Name']")
 }
 
+@test "proxy host is created" {
+  hammer host info --name "${PROXY_HOSTNAME}"
+}
+
 @test "proxy is registered" {
   hammer proxy info --id $PROXY_ID
 }
